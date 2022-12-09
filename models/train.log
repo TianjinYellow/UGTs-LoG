@@ -1,0 +1,529 @@
+2021-12-03 15:54:21 INFO     Model information...
+2021-12-03 15:54:21 INFO     	cuda = True
+2021-12-03 15:54:21 INFO     	do_train = True
+2021-12-03 15:54:21 INFO     	dataset = cora
+2021-12-03 15:54:21 INFO     	epochs = 600
+2021-12-03 15:54:21 INFO     	num_heads = 8
+2021-12-03 15:54:21 INFO     	num_layers = 2
+2021-12-03 15:54:21 INFO     	top_k = 5
+2021-12-03 15:54:21 INFO     	project_dim = -1
+2021-12-03 15:54:21 INFO     	num_hidden = 512
+2021-12-03 15:54:21 INFO     	residual = True
+2021-12-03 15:54:21 INFO     	in_drop = 0.25
+2021-12-03 15:54:21 INFO     	attn_drop = 0.5
+2021-12-03 15:54:21 INFO     	edge_drop = 0.1
+2021-12-03 15:54:21 INFO     	clip = 1.0
+2021-12-03 15:54:21 INFO     	alpha = 0.15
+2021-12-03 15:54:21 INFO     	hop_num = 1
+2021-12-03 15:54:21 INFO     	p_norm = 0.0
+2021-12-03 15:54:21 INFO     	layer_norm = True
+2021-12-03 15:54:21 INFO     	feed_forward = True
+2021-12-03 15:54:21 INFO     	topk_type = local
+2021-12-03 15:54:21 INFO     	patience = 300
+2021-12-03 15:54:21 INFO     	save_path = ../models/
+2021-12-03 15:54:21 INFO     	lr = 0.0002
+2021-12-03 15:54:21 INFO     	lr_reduce_factor = 0.5
+2021-12-03 15:54:21 INFO     	lr_schedule_patience = 25
+2021-12-03 15:54:21 INFO     	weight_decay = 1e-05
+2021-12-03 15:54:21 INFO     	negative_slope = 0.2
+2021-12-03 15:54:21 INFO     	self_loop = 1
+2021-12-03 15:54:21 INFO     	early_stop = False
+2021-12-03 15:54:21 INFO     	fastmode = False
+2021-12-03 15:54:21 INFO     	head_tail_shared = 1
+2021-12-03 15:54:21 INFO     	seed = 2020
+2021-12-03 15:54:21 INFO     Model saving path: ../models/coralr_0.0002lyer_2hs_8ho_1hi_512tk_5pd_-1ind_0.25att_0.5ed_0.1alpha_0.15decay_1e-05
+2021-12-03 15:54:26 INFO     ----Data statistics------'
+      #Edges 10556
+      #Classes 7 
+      #Train samples 140
+      #Val samples 300
+      #Test samples 1000
+2021-12-03 15:54:29 INFO     MAGNA(
+  (gdt_layers): ModuleList(
+    (0): MAGNALayer(
+      (feat_drop): Dropout(p=0.25, inplace=False)
+      (attn_drop): Dropout(p=0.5, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (fc): Linear(in_features=1433, out_features=512, bias=False)
+      (fc_out): Linear(in_features=512, out_features=512, bias=False)
+      (res_fc): Linear(in_features=1433, out_features=512, bias=False)
+      (graph_norm): STDLayerNorm()
+      (feed_forward): PositionwiseFeedForward(
+        (w_1): Linear(in_features=512, out_features=2048, bias=True)
+        (w_2): Linear(in_features=2048, out_features=512, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (ff_norm): STDLayerNorm()
+    )
+    (1): MAGNALayer(
+      (feat_drop): Dropout(p=0.25, inplace=False)
+      (attn_drop): Dropout(p=0.5, inplace=False)
+      (leaky_relu): LeakyReLU(negative_slope=0.2)
+      (fc): Linear(in_features=512, out_features=512, bias=False)
+      (fc_out): Linear(in_features=512, out_features=512, bias=False)
+      (res_fc): Identity()
+      (graph_norm): STDLayerNorm()
+      (feed_forward): PositionwiseFeedForward(
+        (w_1): Linear(in_features=512, out_features=2048, bias=True)
+        (w_2): Linear(in_features=2048, out_features=512, bias=True)
+        (dropout): Dropout(p=0.1, inplace=False)
+      )
+      (ff_norm): STDLayerNorm()
+    )
+  )
+  (classifier): Linear(in_features=512, out_features=7, bias=True)
+  (feat_drop_out): Dropout(p=0.25, inplace=False)
+)
+2021-12-03 15:54:29 INFO     Epoch 00000 | Time(s) nan | Loss 5.0764 | TrainAcc 0.1143 | ValAcc 0.3800 | ETputs(KTEPS) nan
+2021-12-03 15:54:29 INFO     Epoch 00001 | Time(s) nan | Loss 5.5250 | TrainAcc 0.3000 | ValAcc 0.3533 | ETputs(KTEPS) nan
+2021-12-03 15:54:29 INFO     Epoch 00002 | Time(s) nan | Loss 3.9799 | TrainAcc 0.3429 | ValAcc 0.4067 | ETputs(KTEPS) nan
+2021-12-03 15:54:29 INFO     Epoch 00003 | Time(s) 0.0518 | Loss 3.9464 | TrainAcc 0.2929 | ValAcc 0.6000 | ETputs(KTEPS) 255.94
+2021-12-03 15:54:29 INFO     Epoch 00004 | Time(s) 0.0517 | Loss 2.9959 | TrainAcc 0.4643 | ValAcc 0.6333 | ETputs(KTEPS) 256.41
+2021-12-03 15:54:29 INFO     Epoch 00005 | Time(s) 0.0510 | Loss 2.6755 | TrainAcc 0.4000 | ValAcc 0.6933 | ETputs(KTEPS) 260.14
+2021-12-03 15:54:29 INFO     Epoch 00006 | Time(s) 0.0508 | Loss 1.9887 | TrainAcc 0.5214 | ValAcc 0.7267 | ETputs(KTEPS) 261.22
+2021-12-03 15:54:29 INFO     Epoch 00007 | Time(s) 0.0506 | Loss 1.9096 | TrainAcc 0.5929 | ValAcc 0.7167 | ETputs(KTEPS) 262.16
+2021-12-03 15:54:29 INFO     Epoch 00008 | Time(s) 0.0510 | Loss 2.0280 | TrainAcc 0.5500 | ValAcc 0.7167 | ETputs(KTEPS) 260.09
+2021-12-03 15:54:29 INFO     Epoch 00009 | Time(s) 0.0510 | Loss 1.7137 | TrainAcc 0.6143 | ValAcc 0.7167 | ETputs(KTEPS) 260.17
+2021-12-03 15:54:30 INFO     Epoch 00010 | Time(s) 0.0512 | Loss 1.7136 | TrainAcc 0.6571 | ValAcc 0.7200 | ETputs(KTEPS) 259.22
+2021-12-03 15:54:30 INFO     Epoch 00011 | Time(s) 0.0510 | Loss 1.0610 | TrainAcc 0.6929 | ValAcc 0.7367 | ETputs(KTEPS) 260.24
+2021-12-03 15:54:30 INFO     Epoch 00012 | Time(s) 0.0515 | Loss 0.8874 | TrainAcc 0.7786 | ValAcc 0.7500 | ETputs(KTEPS) 257.73
+2021-12-03 15:54:30 INFO     Epoch 00013 | Time(s) 0.0515 | Loss 0.7771 | TrainAcc 0.7929 | ValAcc 0.7433 | ETputs(KTEPS) 257.71
+2021-12-03 15:54:30 INFO     Epoch 00014 | Time(s) 0.0513 | Loss 1.0331 | TrainAcc 0.7643 | ValAcc 0.7567 | ETputs(KTEPS) 258.59
+2021-12-03 15:54:30 INFO     Epoch 00015 | Time(s) 0.0513 | Loss 0.7976 | TrainAcc 0.7929 | ValAcc 0.7767 | ETputs(KTEPS) 258.52
+2021-12-03 15:54:30 INFO     Epoch 00016 | Time(s) 0.0511 | Loss 0.6576 | TrainAcc 0.8000 | ValAcc 0.7900 | ETputs(KTEPS) 259.34
+2021-12-03 15:54:30 INFO     Epoch 00017 | Time(s) 0.0510 | Loss 0.5597 | TrainAcc 0.8357 | ValAcc 0.8000 | ETputs(KTEPS) 259.92
+2021-12-03 15:54:30 INFO     Epoch 00018 | Time(s) 0.0511 | Loss 0.4516 | TrainAcc 0.8500 | ValAcc 0.8000 | ETputs(KTEPS) 259.47
+2021-12-03 15:54:30 INFO     Epoch 00019 | Time(s) 0.0510 | Loss 0.4160 | TrainAcc 0.8500 | ValAcc 0.8100 | ETputs(KTEPS) 260.02
+2021-12-03 15:54:30 INFO     Epoch 00020 | Time(s) 0.0511 | Loss 0.5603 | TrainAcc 0.8429 | ValAcc 0.8133 | ETputs(KTEPS) 259.43
+2021-12-03 15:54:30 INFO     Epoch 00021 | Time(s) 0.0511 | Loss 0.3615 | TrainAcc 0.9071 | ValAcc 0.8167 | ETputs(KTEPS) 259.61
+2021-12-03 15:54:31 INFO     Epoch 00022 | Time(s) 0.0514 | Loss 0.4906 | TrainAcc 0.8500 | ValAcc 0.8100 | ETputs(KTEPS) 258.22
+2021-12-03 15:54:31 INFO     Epoch 00023 | Time(s) 0.0513 | Loss 0.4943 | TrainAcc 0.8714 | ValAcc 0.8033 | ETputs(KTEPS) 258.52
+2021-12-03 15:54:31 INFO     Epoch 00024 | Time(s) 0.0514 | Loss 0.3143 | TrainAcc 0.9000 | ValAcc 0.7933 | ETputs(KTEPS) 258.24
+2021-12-03 15:54:31 INFO     Epoch 00025 | Time(s) 0.0513 | Loss 0.2952 | TrainAcc 0.9214 | ValAcc 0.7900 | ETputs(KTEPS) 258.52
+2021-12-03 15:54:31 INFO     Epoch 00026 | Time(s) 0.0512 | Loss 0.2933 | TrainAcc 0.8929 | ValAcc 0.7900 | ETputs(KTEPS) 258.87
+2021-12-03 15:54:31 INFO     Epoch 00027 | Time(s) 0.0512 | Loss 0.1544 | TrainAcc 0.9500 | ValAcc 0.7867 | ETputs(KTEPS) 259.30
+2021-12-03 15:54:31 INFO     Epoch 00028 | Time(s) 0.0512 | Loss 0.3002 | TrainAcc 0.9143 | ValAcc 0.7600 | ETputs(KTEPS) 258.99
+2021-12-03 15:54:31 INFO     Epoch 00029 | Time(s) 0.0513 | Loss 0.3381 | TrainAcc 0.8929 | ValAcc 0.7567 | ETputs(KTEPS) 258.43
+2021-12-03 15:54:31 INFO     Epoch 00030 | Time(s) 0.0513 | Loss 0.3641 | TrainAcc 0.9143 | ValAcc 0.7700 | ETputs(KTEPS) 258.37
+2021-12-03 15:54:31 INFO     Epoch 00031 | Time(s) 0.0513 | Loss 0.2386 | TrainAcc 0.9143 | ValAcc 0.7833 | ETputs(KTEPS) 258.75
+2021-12-03 15:54:31 INFO     Epoch 00032 | Time(s) 0.0513 | Loss 0.2342 | TrainAcc 0.9286 | ValAcc 0.7867 | ETputs(KTEPS) 258.46
+2021-12-03 15:54:31 INFO     Epoch 00033 | Time(s) 0.0513 | Loss 0.1442 | TrainAcc 0.9571 | ValAcc 0.7900 | ETputs(KTEPS) 258.61
+2021-12-03 15:54:31 INFO     Epoch 00034 | Time(s) 0.0513 | Loss 0.1419 | TrainAcc 0.9500 | ValAcc 0.7967 | ETputs(KTEPS) 258.40
+2021-12-03 15:54:32 INFO     Epoch 00035 | Time(s) 0.0514 | Loss 0.2010 | TrainAcc 0.9357 | ValAcc 0.7933 | ETputs(KTEPS) 258.03
+2021-12-03 15:54:32 INFO     Epoch 00036 | Time(s) 0.0514 | Loss 0.2215 | TrainAcc 0.9214 | ValAcc 0.7933 | ETputs(KTEPS) 257.95
+2021-12-03 15:54:32 INFO     Epoch 00037 | Time(s) 0.0515 | Loss 0.2742 | TrainAcc 0.9500 | ValAcc 0.7800 | ETputs(KTEPS) 257.61
+2021-12-03 15:54:32 INFO     Epoch 00038 | Time(s) 0.0514 | Loss 0.1281 | TrainAcc 0.9357 | ValAcc 0.7800 | ETputs(KTEPS) 257.88
+2021-12-03 15:54:32 INFO     Epoch 00039 | Time(s) 0.0514 | Loss 0.1708 | TrainAcc 0.9571 | ValAcc 0.7900 | ETputs(KTEPS) 258.18
+2021-12-03 15:54:32 INFO     Epoch 00040 | Time(s) 0.0513 | Loss 0.1445 | TrainAcc 0.9571 | ValAcc 0.7900 | ETputs(KTEPS) 258.45
+2021-12-03 15:54:32 INFO     Epoch 00041 | Time(s) 0.0513 | Loss 0.0697 | TrainAcc 0.9786 | ValAcc 0.7767 | ETputs(KTEPS) 258.70
+2021-12-03 15:54:32 INFO     Epoch 00042 | Time(s) 0.0515 | Loss 0.1844 | TrainAcc 0.9500 | ValAcc 0.7767 | ETputs(KTEPS) 257.77
+2021-12-03 15:54:32 INFO     Epoch 00043 | Time(s) 0.0514 | Loss 0.2158 | TrainAcc 0.9429 | ValAcc 0.7867 | ETputs(KTEPS) 258.05
+2021-12-03 15:54:32 INFO     Epoch 00044 | Time(s) 0.0514 | Loss 0.0845 | TrainAcc 0.9714 | ValAcc 0.7967 | ETputs(KTEPS) 258.26
+2021-12-03 15:54:32 INFO     Epoch 00045 | Time(s) 0.0514 | Loss 0.0868 | TrainAcc 0.9571 | ValAcc 0.8100 | ETputs(KTEPS) 258.29
+2021-12-03 15:54:32 INFO     Epoch 00046 | Time(s) 0.0513 | Loss 0.1171 | TrainAcc 0.9714 | ValAcc 0.7967 | ETputs(KTEPS) 258.45
+2021-12-03 15:54:32 INFO     Epoch 00047 | Time(s) 0.0513 | Loss 0.0390 | TrainAcc 0.9786 | ValAcc 0.7900 | ETputs(KTEPS) 258.65
+2021-12-03 15:54:33 INFO     Epoch 00048 | Time(s) 0.0513 | Loss 0.1185 | TrainAcc 0.9500 | ValAcc 0.7933 | ETputs(KTEPS) 258.73
+2021-12-03 15:54:33 INFO     Epoch 00049 | Time(s) 0.0512 | Loss 0.1899 | TrainAcc 0.9357 | ValAcc 0.8000 | ETputs(KTEPS) 258.96
+2021-12-03 15:54:33 INFO     Epoch 00050 | Time(s) 0.0512 | Loss 0.1133 | TrainAcc 0.9643 | ValAcc 0.8000 | ETputs(KTEPS) 259.15
+2021-12-03 15:54:33 INFO     Epoch 00051 | Time(s) 0.0512 | Loss 0.0990 | TrainAcc 0.9714 | ValAcc 0.7967 | ETputs(KTEPS) 259.16
+2021-12-03 15:54:33 INFO     Epoch 00052 | Time(s) 0.0512 | Loss 0.0618 | TrainAcc 0.9857 | ValAcc 0.7833 | ETputs(KTEPS) 259.29
+2021-12-03 15:54:33 INFO     Epoch 00053 | Time(s) 0.0511 | Loss 0.0786 | TrainAcc 0.9571 | ValAcc 0.7833 | ETputs(KTEPS) 259.51
+2021-12-03 15:54:33 INFO     Epoch 00054 | Time(s) 0.0511 | Loss 0.0516 | TrainAcc 0.9714 | ValAcc 0.7833 | ETputs(KTEPS) 259.52
+2021-12-03 15:54:33 INFO     Epoch 00055 | Time(s) 0.0512 | Loss 0.0408 | TrainAcc 0.9714 | ValAcc 0.7867 | ETputs(KTEPS) 259.00
+2021-12-03 15:54:33 INFO     Epoch 00056 | Time(s) 0.0512 | Loss 0.0203 | TrainAcc 0.9929 | ValAcc 0.7833 | ETputs(KTEPS) 259.13
+2021-12-03 15:54:33 INFO     Epoch 00057 | Time(s) 0.0512 | Loss 0.1430 | TrainAcc 0.9571 | ValAcc 0.7833 | ETputs(KTEPS) 259.22
+2021-12-03 15:54:33 INFO     Epoch 00058 | Time(s) 0.0512 | Loss 0.0284 | TrainAcc 0.9786 | ValAcc 0.7800 | ETputs(KTEPS) 259.29
+2021-12-03 15:54:33 INFO     Epoch 00059 | Time(s) 0.0514 | Loss 0.0398 | TrainAcc 0.9786 | ValAcc 0.7533 | ETputs(KTEPS) 258.29
+2021-12-03 15:54:34 INFO     Epoch 00060 | Time(s) 0.0513 | Loss 0.0582 | TrainAcc 0.9786 | ValAcc 0.7600 | ETputs(KTEPS) 258.36
+2021-12-03 15:54:34 INFO     Epoch 00061 | Time(s) 0.0513 | Loss 0.1577 | TrainAcc 0.9571 | ValAcc 0.7700 | ETputs(KTEPS) 258.32
+2021-12-03 15:54:34 INFO     Epoch 00062 | Time(s) 0.0514 | Loss 0.0692 | TrainAcc 0.9786 | ValAcc 0.7733 | ETputs(KTEPS) 258.13
+2021-12-03 15:54:34 INFO     Epoch 00063 | Time(s) 0.0514 | Loss 0.2168 | TrainAcc 0.9643 | ValAcc 0.7800 | ETputs(KTEPS) 258.14
+2021-12-03 15:54:34 INFO     Epoch 00064 | Time(s) 0.0514 | Loss 0.1785 | TrainAcc 0.9500 | ValAcc 0.7767 | ETputs(KTEPS) 258.19
+2021-12-03 15:54:34 INFO     Epoch 00065 | Time(s) 0.0514 | Loss 0.0627 | TrainAcc 0.9786 | ValAcc 0.7833 | ETputs(KTEPS) 258.03
+2021-12-03 15:54:34 INFO     Epoch 00066 | Time(s) 0.0514 | Loss 0.1166 | TrainAcc 0.9714 | ValAcc 0.7833 | ETputs(KTEPS) 258.13
+2021-12-03 15:54:34 INFO     Epoch 00067 | Time(s) 0.0514 | Loss 0.0855 | TrainAcc 0.9857 | ValAcc 0.7867 | ETputs(KTEPS) 258.13
+2021-12-03 15:54:34 INFO     Epoch 00068 | Time(s) 0.0514 | Loss 0.1557 | TrainAcc 0.9571 | ValAcc 0.7967 | ETputs(KTEPS) 258.00
+2021-12-03 15:54:34 INFO     Epoch 00069 | Time(s) 0.0515 | Loss 0.1939 | TrainAcc 0.9429 | ValAcc 0.8167 | ETputs(KTEPS) 257.72
+2021-12-03 15:54:34 INFO     Epoch 00070 | Time(s) 0.0515 | Loss 0.1127 | TrainAcc 0.9643 | ValAcc 0.8167 | ETputs(KTEPS) 257.60
+2021-12-03 15:54:34 INFO     Epoch 00071 | Time(s) 0.0516 | Loss 0.0085 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 257.21
+2021-12-03 15:54:34 INFO     Epoch 00072 | Time(s) 0.0515 | Loss 0.0720 | TrainAcc 0.9786 | ValAcc 0.8100 | ETputs(KTEPS) 257.37
+2021-12-03 15:54:35 INFO     Epoch 00073 | Time(s) 0.0515 | Loss 0.2560 | TrainAcc 0.9571 | ValAcc 0.8100 | ETputs(KTEPS) 257.47
+2021-12-03 15:54:35 INFO     Epoch 00074 | Time(s) 0.0515 | Loss 0.0499 | TrainAcc 0.9786 | ValAcc 0.7933 | ETputs(KTEPS) 257.54
+2021-12-03 15:54:35 INFO     Epoch 00075 | Time(s) 0.0515 | Loss 0.1297 | TrainAcc 0.9643 | ValAcc 0.7867 | ETputs(KTEPS) 257.64
+2021-12-03 15:54:35 INFO     Epoch 00076 | Time(s) 0.0515 | Loss 0.0875 | TrainAcc 0.9786 | ValAcc 0.7800 | ETputs(KTEPS) 257.68
+2021-12-03 15:54:35 INFO     Epoch 00077 | Time(s) 0.0515 | Loss 0.0945 | TrainAcc 0.9786 | ValAcc 0.7767 | ETputs(KTEPS) 257.72
+2021-12-03 15:54:35 INFO     Epoch 00078 | Time(s) 0.0515 | Loss 0.0460 | TrainAcc 0.9929 | ValAcc 0.7733 | ETputs(KTEPS) 257.52
+2021-12-03 15:54:35 INFO     Epoch 00079 | Time(s) 0.0515 | Loss 0.0274 | TrainAcc 0.9857 | ValAcc 0.7700 | ETputs(KTEPS) 257.56
+2021-12-03 15:54:35 INFO     Epoch 00080 | Time(s) 0.0515 | Loss 0.1956 | TrainAcc 0.9571 | ValAcc 0.7667 | ETputs(KTEPS) 257.53
+2021-12-03 15:54:35 INFO     Epoch 00081 | Time(s) 0.0520 | Loss 0.1195 | TrainAcc 0.9643 | ValAcc 0.7767 | ETputs(KTEPS) 255.09
+2021-12-03 15:54:35 INFO     Epoch 00082 | Time(s) 0.0520 | Loss 0.0211 | TrainAcc 0.9857 | ValAcc 0.8067 | ETputs(KTEPS) 255.10
+2021-12-03 15:54:35 INFO     Epoch 00083 | Time(s) 0.0520 | Loss 0.0894 | TrainAcc 0.9857 | ValAcc 0.8167 | ETputs(KTEPS) 254.91
+2021-12-03 15:54:35 INFO     Epoch 00084 | Time(s) 0.0520 | Loss 0.0211 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 254.89
+2021-12-03 15:54:36 INFO     Epoch 00085 | Time(s) 0.0521 | Loss 0.0816 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 254.78
+2021-12-03 15:54:36 INFO     Epoch 00086 | Time(s) 0.0521 | Loss 0.0111 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 254.48
+2021-12-03 15:54:36 INFO     Epoch 00087 | Time(s) 0.0521 | Loss 0.0789 | TrainAcc 0.9786 | ValAcc 0.8167 | ETputs(KTEPS) 254.64
+2021-12-03 15:54:36 INFO     Epoch 00088 | Time(s) 0.0521 | Loss 0.0550 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 254.69
+2021-12-03 15:54:36 INFO     Epoch 00089 | Time(s) 0.0520 | Loss 0.0551 | TrainAcc 0.9857 | ValAcc 0.8233 | ETputs(KTEPS) 254.84
+2021-12-03 15:54:36 INFO     Epoch 00090 | Time(s) 0.0521 | Loss 0.0076 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 254.80
+2021-12-03 15:54:36 INFO     Epoch 00091 | Time(s) 0.0520 | Loss 0.0396 | TrainAcc 0.9786 | ValAcc 0.8133 | ETputs(KTEPS) 254.95
+2021-12-03 15:54:36 INFO     Epoch 00092 | Time(s) 0.0520 | Loss 0.0171 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 254.96
+2021-12-03 15:54:36 INFO     Epoch 00093 | Time(s) 0.0520 | Loss 0.0200 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.04
+2021-12-03 15:54:36 INFO     Epoch 00094 | Time(s) 0.0520 | Loss 0.0193 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 255.07
+2021-12-03 15:54:36 INFO     Epoch 00095 | Time(s) 0.0520 | Loss 0.0260 | TrainAcc 0.9857 | ValAcc 0.7900 | ETputs(KTEPS) 254.94
+2021-12-03 15:54:36 INFO     Epoch 00096 | Time(s) 0.0520 | Loss 0.0458 | TrainAcc 0.9857 | ValAcc 0.7833 | ETputs(KTEPS) 254.92
+2021-12-03 15:54:37 INFO     Epoch 00097 | Time(s) 0.0520 | Loss 0.1469 | TrainAcc 0.9643 | ValAcc 0.7833 | ETputs(KTEPS) 255.02
+2021-12-03 15:54:37 INFO     Epoch 00098 | Time(s) 0.0520 | Loss 0.1124 | TrainAcc 0.9857 | ValAcc 0.7900 | ETputs(KTEPS) 255.07
+2021-12-03 15:54:37 INFO     Epoch 00099 | Time(s) 0.0520 | Loss 0.0236 | TrainAcc 0.9857 | ValAcc 0.7967 | ETputs(KTEPS) 255.21
+2021-12-03 15:54:37 INFO     Epoch 00100 | Time(s) 0.0520 | Loss 0.0214 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.18
+2021-12-03 15:54:37 INFO     Epoch 00101 | Time(s) 0.0520 | Loss 0.0685 | TrainAcc 0.9786 | ValAcc 0.8167 | ETputs(KTEPS) 255.23
+2021-12-03 15:54:37 INFO     Epoch 00102 | Time(s) 0.0520 | Loss 0.0673 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 255.32
+2021-12-03 15:54:37 INFO     Epoch 00103 | Time(s) 0.0519 | Loss 0.0104 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:37 INFO     Epoch 00104 | Time(s) 0.0519 | Loss 0.0708 | TrainAcc 0.9857 | ValAcc 0.8067 | ETputs(KTEPS) 255.54
+2021-12-03 15:54:37 INFO     Epoch 00105 | Time(s) 0.0519 | Loss 0.0347 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:37 INFO     Epoch 00106 | Time(s) 0.0519 | Loss 0.0386 | TrainAcc 0.9786 | ValAcc 0.7967 | ETputs(KTEPS) 255.59
+2021-12-03 15:54:37 INFO     Epoch 00107 | Time(s) 0.0519 | Loss 0.0672 | TrainAcc 0.9643 | ValAcc 0.7933 | ETputs(KTEPS) 255.71
+2021-12-03 15:54:37 INFO     Epoch 00108 | Time(s) 0.0518 | Loss 0.0096 | TrainAcc 0.9929 | ValAcc 0.7967 | ETputs(KTEPS) 255.84
+2021-12-03 15:54:37 INFO     Epoch 00109 | Time(s) 0.0519 | Loss 0.0107 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.58
+2021-12-03 15:54:38 INFO     Epoch 00110 | Time(s) 0.0519 | Loss 0.0665 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.70
+2021-12-03 15:54:38 INFO     Epoch 00111 | Time(s) 0.0518 | Loss 0.0865 | TrainAcc 0.9857 | ValAcc 0.8000 | ETputs(KTEPS) 255.83
+2021-12-03 15:54:38 INFO     Epoch 00112 | Time(s) 0.0518 | Loss 0.0432 | TrainAcc 0.9929 | ValAcc 0.7967 | ETputs(KTEPS) 255.95
+2021-12-03 15:54:38 INFO     Epoch 00113 | Time(s) 0.0522 | Loss 0.0635 | TrainAcc 0.9929 | ValAcc 0.7967 | ETputs(KTEPS) 254.20
+2021-12-03 15:54:38 INFO     Epoch 00114 | Time(s) 0.0522 | Loss 0.0529 | TrainAcc 0.9786 | ValAcc 0.7967 | ETputs(KTEPS) 254.32
+2021-12-03 15:54:38 INFO     Epoch 00115 | Time(s) 0.0522 | Loss 0.0687 | TrainAcc 0.9786 | ValAcc 0.8000 | ETputs(KTEPS) 254.12
+2021-12-03 15:54:38 INFO     Epoch 00116 | Time(s) 0.0522 | Loss 0.0383 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 254.19
+2021-12-03 15:54:38 INFO     Epoch 00117 | Time(s) 0.0522 | Loss 0.0676 | TrainAcc 0.9786 | ValAcc 0.8000 | ETputs(KTEPS) 254.32
+2021-12-03 15:54:38 INFO     Epoch 00118 | Time(s) 0.0522 | Loss 0.0202 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 254.19
+2021-12-03 15:54:38 INFO     Epoch 00119 | Time(s) 0.0522 | Loss 0.0046 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 254.15
+2021-12-03 15:54:38 INFO     Epoch 00120 | Time(s) 0.0522 | Loss 0.0541 | TrainAcc 0.9786 | ValAcc 0.8133 | ETputs(KTEPS) 254.20
+2021-12-03 15:54:38 INFO     Epoch 00121 | Time(s) 0.0522 | Loss 0.0318 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 254.28
+2021-12-03 15:54:39 INFO     Epoch 00122 | Time(s) 0.0522 | Loss 0.2121 | TrainAcc 0.9500 | ValAcc 0.8200 | ETputs(KTEPS) 254.32
+2021-12-03 15:54:39 INFO     Epoch 00123 | Time(s) 0.0521 | Loss 0.0444 | TrainAcc 0.9786 | ValAcc 0.8167 | ETputs(KTEPS) 254.42
+2021-12-03 15:54:39 INFO     Epoch 00124 | Time(s) 0.0521 | Loss 0.0627 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 254.41
+2021-12-03 15:54:39 INFO     Epoch 00125 | Time(s) 0.0521 | Loss 0.0372 | TrainAcc 0.9857 | ValAcc 0.8200 | ETputs(KTEPS) 254.46
+2021-12-03 15:54:39 INFO     Epoch 00126 | Time(s) 0.0521 | Loss 0.0567 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 254.57
+2021-12-03 15:54:39 INFO     Epoch 00127 | Time(s) 0.0521 | Loss 0.0870 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 254.68
+2021-12-03 15:54:39 INFO     Epoch 00128 | Time(s) 0.0521 | Loss 0.0069 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 254.76
+2021-12-03 15:54:39 INFO     Epoch 00129 | Time(s) 0.0520 | Loss 0.0793 | TrainAcc 0.9786 | ValAcc 0.8000 | ETputs(KTEPS) 254.87
+2021-12-03 15:54:39 INFO     Epoch 00130 | Time(s) 0.0521 | Loss 0.0455 | TrainAcc 0.9929 | ValAcc 0.7900 | ETputs(KTEPS) 254.79
+2021-12-03 15:54:39 INFO     Epoch 00131 | Time(s) 0.0521 | Loss 0.0176 | TrainAcc 0.9929 | ValAcc 0.7833 | ETputs(KTEPS) 254.66
+2021-12-03 15:54:39 INFO     Epoch 00132 | Time(s) 0.0521 | Loss 0.0319 | TrainAcc 0.9786 | ValAcc 0.7800 | ETputs(KTEPS) 254.74
+2021-12-03 15:54:39 INFO     Epoch 00133 | Time(s) 0.0521 | Loss 0.0158 | TrainAcc 0.9929 | ValAcc 0.7867 | ETputs(KTEPS) 254.71
+2021-12-03 15:54:39 INFO     Epoch 00134 | Time(s) 0.0521 | Loss 0.0335 | TrainAcc 0.9857 | ValAcc 0.8000 | ETputs(KTEPS) 254.70
+2021-12-03 15:54:40 INFO     Epoch 00135 | Time(s) 0.0521 | Loss 0.0368 | TrainAcc 0.9857 | ValAcc 0.7933 | ETputs(KTEPS) 254.77
+2021-12-03 15:54:40 INFO     Epoch 00136 | Time(s) 0.0520 | Loss 0.1411 | TrainAcc 0.9643 | ValAcc 0.7900 | ETputs(KTEPS) 254.88
+2021-12-03 15:54:40 INFO     Epoch 00137 | Time(s) 0.0521 | Loss 0.0187 | TrainAcc 0.9929 | ValAcc 0.7967 | ETputs(KTEPS) 254.82
+2021-12-03 15:54:40 INFO     Epoch 00138 | Time(s) 0.0520 | Loss 0.0043 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 254.92
+2021-12-03 15:54:40 INFO     Epoch 00139 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 254.94
+2021-12-03 15:54:40 INFO     Epoch 00140 | Time(s) 0.0520 | Loss 0.0163 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.05
+2021-12-03 15:54:40 INFO     Epoch 00141 | Time(s) 0.0520 | Loss 0.0028 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.03
+2021-12-03 15:54:40 INFO     Epoch 00142 | Time(s) 0.0520 | Loss 0.0212 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.12
+2021-12-03 15:54:40 INFO     Epoch 00143 | Time(s) 0.0520 | Loss 0.0215 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.21
+2021-12-03 15:54:40 INFO     Epoch 00144 | Time(s) 0.0520 | Loss 0.0238 | TrainAcc 0.9929 | ValAcc 0.8233 | ETputs(KTEPS) 255.11
+2021-12-03 15:54:40 INFO     Epoch 00145 | Time(s) 0.0520 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8267 | ETputs(KTEPS) 255.15
+2021-12-03 15:54:40 INFO     Epoch 00146 | Time(s) 0.0520 | Loss 0.0012 | TrainAcc 1.0000 | ValAcc 0.8300 | ETputs(KTEPS) 255.14
+2021-12-03 15:54:40 INFO     Epoch 00147 | Time(s) 0.0520 | Loss 0.0445 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 255.02
+2021-12-03 15:54:41 INFO     Epoch 00148 | Time(s) 0.0520 | Loss 0.0107 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.10
+2021-12-03 15:54:41 INFO     Epoch 00149 | Time(s) 0.0520 | Loss 0.0309 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 255.19
+2021-12-03 15:54:41 INFO     Epoch 00150 | Time(s) 0.0520 | Loss 0.0436 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:41 INFO     Epoch 00151 | Time(s) 0.0520 | Loss 0.0109 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.26
+2021-12-03 15:54:41 INFO     Epoch 00152 | Time(s) 0.0520 | Loss 0.0038 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.32
+2021-12-03 15:54:41 INFO     Epoch 00153 | Time(s) 0.0519 | Loss 0.0015 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.40
+2021-12-03 15:54:41 INFO     Epoch 00154 | Time(s) 0.0520 | Loss 0.0006 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:41 INFO     Epoch 00155 | Time(s) 0.0520 | Loss 0.0344 | TrainAcc 0.9929 | ValAcc 0.7967 | ETputs(KTEPS) 255.29
+2021-12-03 15:54:41 INFO     Epoch 00156 | Time(s) 0.0520 | Loss 0.0293 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 255.26
+2021-12-03 15:54:41 INFO     Epoch 00157 | Time(s) 0.0520 | Loss 0.0187 | TrainAcc 0.9929 | ValAcc 0.7900 | ETputs(KTEPS) 255.29
+2021-12-03 15:54:41 INFO     Epoch 00158 | Time(s) 0.0519 | Loss 0.0329 | TrainAcc 0.9929 | ValAcc 0.7867 | ETputs(KTEPS) 255.34
+2021-12-03 15:54:41 INFO     Epoch 00159 | Time(s) 0.0519 | Loss 0.0152 | TrainAcc 0.9929 | ValAcc 0.7867 | ETputs(KTEPS) 255.41
+2021-12-03 15:54:41 INFO     Epoch 00160 | Time(s) 0.0520 | Loss 0.0410 | TrainAcc 0.9929 | ValAcc 0.7867 | ETputs(KTEPS) 255.19
+2021-12-03 15:54:42 INFO     Epoch 00161 | Time(s) 0.0520 | Loss 0.0380 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 255.27
+2021-12-03 15:54:42 INFO     Epoch 00162 | Time(s) 0.0519 | Loss 0.0152 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:42 INFO     Epoch 00163 | Time(s) 0.0519 | Loss 0.0012 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:42 INFO     Epoch 00164 | Time(s) 0.0519 | Loss 0.0477 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:42 INFO     Epoch 00165 | Time(s) 0.0519 | Loss 0.0712 | TrainAcc 0.9857 | ValAcc 0.8067 | ETputs(KTEPS) 255.54
+2021-12-03 15:54:42 INFO     Epoch 00166 | Time(s) 0.0519 | Loss 0.0380 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.61
+2021-12-03 15:54:42 INFO     Epoch 00167 | Time(s) 0.0519 | Loss 0.0200 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 255.70
+2021-12-03 15:54:42 INFO     Epoch 00168 | Time(s) 0.0519 | Loss 0.0008 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:42 INFO     Epoch 00169 | Time(s) 0.0519 | Loss 0.0039 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.76
+2021-12-03 15:54:42 INFO     Epoch 00170 | Time(s) 0.0519 | Loss 0.0328 | TrainAcc 0.9857 | ValAcc 0.8167 | ETputs(KTEPS) 255.79
+2021-12-03 15:54:42 INFO     Epoch 00171 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.76
+2021-12-03 15:54:42 INFO     Epoch 00172 | Time(s) 0.0519 | Loss 0.0058 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.78
+2021-12-03 15:54:43 INFO     Epoch 00173 | Time(s) 0.0518 | Loss 0.0116 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.82
+2021-12-03 15:54:43 INFO     Epoch 00174 | Time(s) 0.0519 | Loss 0.0023 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.57
+2021-12-03 15:54:43 INFO     Epoch 00175 | Time(s) 0.0519 | Loss 0.0032 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.61
+2021-12-03 15:54:43 INFO     Epoch 00176 | Time(s) 0.0519 | Loss 0.0173 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:43 INFO     Epoch 00177 | Time(s) 0.0519 | Loss 0.0220 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.71
+2021-12-03 15:54:43 INFO     Epoch 00178 | Time(s) 0.0519 | Loss 0.0697 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.77
+2021-12-03 15:54:43 INFO     Epoch 00179 | Time(s) 0.0518 | Loss 0.0007 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.82
+2021-12-03 15:54:43 INFO     Epoch 00180 | Time(s) 0.0519 | Loss 0.0543 | TrainAcc 0.9857 | ValAcc 0.7967 | ETputs(KTEPS) 255.80
+2021-12-03 15:54:43 INFO     Epoch 00181 | Time(s) 0.0518 | Loss 0.0028 | TrainAcc 1.0000 | ValAcc 0.7933 | ETputs(KTEPS) 255.85
+2021-12-03 15:54:43 INFO     Epoch 00182 | Time(s) 0.0519 | Loss 0.0160 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 255.74
+2021-12-03 15:54:43 INFO     Epoch 00183 | Time(s) 0.0519 | Loss 0.0361 | TrainAcc 0.9857 | ValAcc 0.7900 | ETputs(KTEPS) 255.75
+2021-12-03 15:54:43 INFO     Epoch 00184 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.7867 | ETputs(KTEPS) 255.73
+2021-12-03 15:54:43 INFO     Epoch 00185 | Time(s) 0.0519 | Loss 0.0327 | TrainAcc 0.9786 | ValAcc 0.7900 | ETputs(KTEPS) 255.77
+2021-12-03 15:54:44 INFO     Epoch 00186 | Time(s) 0.0519 | Loss 0.0139 | TrainAcc 0.9929 | ValAcc 0.7900 | ETputs(KTEPS) 255.74
+2021-12-03 15:54:44 INFO     Epoch 00187 | Time(s) 0.0519 | Loss 0.0079 | TrainAcc 0.9929 | ValAcc 0.7933 | ETputs(KTEPS) 255.57
+2021-12-03 15:54:44 INFO     Epoch 00188 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.60
+2021-12-03 15:54:44 INFO     Epoch 00189 | Time(s) 0.0519 | Loss 0.0016 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.55
+2021-12-03 15:54:44 INFO     Epoch 00190 | Time(s) 0.0519 | Loss 0.0031 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.61
+2021-12-03 15:54:44 INFO     Epoch 00191 | Time(s) 0.0519 | Loss 0.0324 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:44 INFO     Epoch 00192 | Time(s) 0.0519 | Loss 0.0364 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.72
+2021-12-03 15:54:44 INFO     Epoch 00193 | Time(s) 0.0519 | Loss 0.0021 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.74
+2021-12-03 15:54:44 INFO     Epoch 00194 | Time(s) 0.0519 | Loss 0.0081 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.80
+2021-12-03 15:54:44 INFO     Epoch 00195 | Time(s) 0.0519 | Loss 0.0071 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:44 INFO     Epoch 00196 | Time(s) 0.0519 | Loss 0.0035 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:44 INFO     Epoch 00197 | Time(s) 0.0519 | Loss 0.0356 | TrainAcc 0.9857 | ValAcc 0.8067 | ETputs(KTEPS) 255.71
+2021-12-03 15:54:45 INFO     Epoch 00198 | Time(s) 0.0519 | Loss 0.0368 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 255.76
+2021-12-03 15:54:45 INFO     Epoch 00199 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.77
+2021-12-03 15:54:45 INFO     Epoch 00200 | Time(s) 0.0518 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.82
+2021-12-03 15:54:45 INFO     Epoch 00201 | Time(s) 0.0518 | Loss 0.0946 | TrainAcc 0.9857 | ValAcc 0.8133 | ETputs(KTEPS) 255.89
+2021-12-03 15:54:45 INFO     Epoch 00202 | Time(s) 0.0518 | Loss 0.0951 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 255.94
+2021-12-03 15:54:45 INFO     Epoch 00203 | Time(s) 0.0518 | Loss 0.0261 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.99
+2021-12-03 15:54:45 INFO     Epoch 00204 | Time(s) 0.0518 | Loss 0.0177 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 256.05
+2021-12-03 15:54:45 INFO     Epoch 00205 | Time(s) 0.0518 | Loss 0.0013 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 256.11
+2021-12-03 15:54:45 INFO     Epoch 00206 | Time(s) 0.0518 | Loss 0.0066 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 256.14
+2021-12-03 15:54:45 INFO     Epoch 00207 | Time(s) 0.0518 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 256.12
+2021-12-03 15:54:45 INFO     Epoch 00208 | Time(s) 0.0518 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 256.04
+2021-12-03 15:54:45 INFO     Epoch 00209 | Time(s) 0.0520 | Loss 0.0113 | TrainAcc 0.9857 | ValAcc 0.8067 | ETputs(KTEPS) 255.07
+2021-12-03 15:54:45 INFO     Epoch 00210 | Time(s) 0.0520 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.13
+2021-12-03 15:54:46 INFO     Epoch 00211 | Time(s) 0.0520 | Loss 0.0334 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.18
+2021-12-03 15:54:46 INFO     Epoch 00212 | Time(s) 0.0520 | Loss 0.0108 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.22
+2021-12-03 15:54:46 INFO     Epoch 00213 | Time(s) 0.0520 | Loss 0.0302 | TrainAcc 0.9857 | ValAcc 0.8033 | ETputs(KTEPS) 255.26
+2021-12-03 15:54:46 INFO     Epoch 00214 | Time(s) 0.0520 | Loss 0.0186 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:46 INFO     Epoch 00215 | Time(s) 0.0519 | Loss 0.0339 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:46 INFO     Epoch 00216 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:46 INFO     Epoch 00217 | Time(s) 0.0520 | Loss 0.0039 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.14
+2021-12-03 15:54:46 INFO     Epoch 00218 | Time(s) 0.0520 | Loss 0.0046 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.17
+2021-12-03 15:54:46 INFO     Epoch 00219 | Time(s) 0.0520 | Loss 0.0036 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.20
+2021-12-03 15:54:46 INFO     Epoch 00220 | Time(s) 0.0520 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:46 INFO     Epoch 00221 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.21
+2021-12-03 15:54:46 INFO     Epoch 00222 | Time(s) 0.0520 | Loss 0.0023 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.05
+2021-12-03 15:54:47 INFO     Epoch 00223 | Time(s) 0.0520 | Loss 0.0010 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.00
+2021-12-03 15:54:47 INFO     Epoch 00224 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 254.98
+2021-12-03 15:54:47 INFO     Epoch 00225 | Time(s) 0.0520 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.00
+2021-12-03 15:54:47 INFO     Epoch 00226 | Time(s) 0.0520 | Loss 0.0050 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.05
+2021-12-03 15:54:47 INFO     Epoch 00227 | Time(s) 0.0520 | Loss 0.0272 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 254.99
+2021-12-03 15:54:47 INFO     Epoch 00228 | Time(s) 0.0520 | Loss 0.0195 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 254.97
+2021-12-03 15:54:47 INFO     Epoch 00229 | Time(s) 0.0520 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 254.99
+2021-12-03 15:54:47 INFO     Epoch 00230 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.00
+2021-12-03 15:54:47 INFO     Epoch 00231 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.03
+2021-12-03 15:54:47 INFO     Epoch 00232 | Time(s) 0.0520 | Loss 0.0727 | TrainAcc 0.9786 | ValAcc 0.8000 | ETputs(KTEPS) 254.95
+2021-12-03 15:54:47 INFO     Epoch 00233 | Time(s) 0.0520 | Loss 0.0021 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 254.93
+2021-12-03 15:54:47 INFO     Epoch 00234 | Time(s) 0.0520 | Loss 0.0916 | TrainAcc 0.9786 | ValAcc 0.8067 | ETputs(KTEPS) 254.88
+2021-12-03 15:54:48 INFO     Epoch 00235 | Time(s) 0.0520 | Loss 0.0623 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 254.89
+2021-12-03 15:54:48 INFO     Epoch 00236 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 254.92
+2021-12-03 15:54:48 INFO     Epoch 00237 | Time(s) 0.0520 | Loss 0.0048 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 254.97
+2021-12-03 15:54:48 INFO     Epoch 00238 | Time(s) 0.0520 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 254.98
+2021-12-03 15:54:48 INFO     Epoch 00239 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.03
+2021-12-03 15:54:48 INFO     Epoch 00240 | Time(s) 0.0520 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.08
+2021-12-03 15:54:48 INFO     Epoch 00241 | Time(s) 0.0520 | Loss 0.0541 | TrainAcc 0.9857 | ValAcc 0.8167 | ETputs(KTEPS) 255.09
+2021-12-03 15:54:48 INFO     Epoch 00242 | Time(s) 0.0520 | Loss 0.0072 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.05
+2021-12-03 15:54:48 INFO     Epoch 00243 | Time(s) 0.0520 | Loss 0.0327 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.07
+2021-12-03 15:54:48 INFO     Epoch 00244 | Time(s) 0.0520 | Loss 0.0040 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.12
+2021-12-03 15:54:48 INFO     Epoch 00245 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.17
+2021-12-03 15:54:48 INFO     Epoch 00246 | Time(s) 0.0520 | Loss 0.0146 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.16
+2021-12-03 15:54:48 INFO     Epoch 00247 | Time(s) 0.0520 | Loss 0.0504 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.18
+2021-12-03 15:54:49 INFO     Epoch 00248 | Time(s) 0.0520 | Loss 0.0039 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.14
+2021-12-03 15:54:49 INFO     Epoch 00249 | Time(s) 0.0520 | Loss 0.0071 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.13
+2021-12-03 15:54:49 INFO     Epoch 00250 | Time(s) 0.0520 | Loss 0.0124 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.19
+2021-12-03 15:54:49 INFO     Epoch 00251 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.20
+2021-12-03 15:54:49 INFO     Epoch 00252 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:49 INFO     Epoch 00253 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.27
+2021-12-03 15:54:49 INFO     Epoch 00254 | Time(s) 0.0519 | Loss 0.0038 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.32
+2021-12-03 15:54:49 INFO     Epoch 00255 | Time(s) 0.0519 | Loss 0.0028 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:49 INFO     Epoch 00256 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.36
+2021-12-03 15:54:49 INFO     Epoch 00257 | Time(s) 0.0519 | Loss 0.0011 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.40
+2021-12-03 15:54:49 INFO     Epoch 00258 | Time(s) 0.0519 | Loss 0.0259 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.42
+2021-12-03 15:54:49 INFO     Epoch 00259 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.44
+2021-12-03 15:54:49 INFO     Epoch 00260 | Time(s) 0.0519 | Loss 0.0044 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.34
+2021-12-03 15:54:50 INFO     Epoch 00261 | Time(s) 0.0519 | Loss 0.0077 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.36
+2021-12-03 15:54:50 INFO     Epoch 00262 | Time(s) 0.0519 | Loss 0.0590 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.36
+2021-12-03 15:54:50 INFO     Epoch 00263 | Time(s) 0.0519 | Loss 0.0013 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.36
+2021-12-03 15:54:50 INFO     Epoch 00264 | Time(s) 0.0520 | Loss 0.0010 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:50 INFO     Epoch 00265 | Time(s) 0.0520 | Loss 0.0019 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:50 INFO     Epoch 00266 | Time(s) 0.0520 | Loss 0.0018 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:50 INFO     Epoch 00267 | Time(s) 0.0520 | Loss 0.0421 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:50 INFO     Epoch 00268 | Time(s) 0.0520 | Loss 0.0017 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:50 INFO     Epoch 00269 | Time(s) 0.0520 | Loss 0.0025 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:50 INFO     Epoch 00270 | Time(s) 0.0520 | Loss 0.0020 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.27
+2021-12-03 15:54:50 INFO     Epoch 00271 | Time(s) 0.0520 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:50 INFO     Epoch 00272 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.29
+2021-12-03 15:54:51 INFO     Epoch 00273 | Time(s) 0.0520 | Loss 0.1556 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:51 INFO     Epoch 00274 | Time(s) 0.0519 | Loss 0.0076 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:51 INFO     Epoch 00275 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:51 INFO     Epoch 00276 | Time(s) 0.0519 | Loss 0.0054 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.42
+2021-12-03 15:54:51 INFO     Epoch 00277 | Time(s) 0.0519 | Loss 0.0042 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.40
+2021-12-03 15:54:51 INFO     Epoch 00278 | Time(s) 0.0519 | Loss 0.0032 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:51 INFO     Epoch 00279 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:51 INFO     Epoch 00280 | Time(s) 0.0519 | Loss 0.0008 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:51 INFO     Epoch 00281 | Time(s) 0.0519 | Loss 0.0131 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 255.40
+2021-12-03 15:54:51 INFO     Epoch 00282 | Time(s) 0.0519 | Loss 0.0292 | TrainAcc 0.9857 | ValAcc 0.8200 | ETputs(KTEPS) 255.39
+2021-12-03 15:54:51 INFO     Epoch 00283 | Time(s) 0.0519 | Loss 0.0005 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.38
+2021-12-03 15:54:51 INFO     Epoch 00284 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.34
+2021-12-03 15:54:52 INFO     Epoch 00285 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.34
+2021-12-03 15:54:52 INFO     Epoch 00286 | Time(s) 0.0520 | Loss 0.0011 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.32
+2021-12-03 15:54:52 INFO     Epoch 00287 | Time(s) 0.0519 | Loss 0.0064 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.36
+2021-12-03 15:54:52 INFO     Epoch 00288 | Time(s) 0.0519 | Loss 0.0046 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.41
+2021-12-03 15:54:52 INFO     Epoch 00289 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:52 INFO     Epoch 00290 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.44
+2021-12-03 15:54:52 INFO     Epoch 00291 | Time(s) 0.0519 | Loss 0.0032 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.48
+2021-12-03 15:54:52 INFO     Epoch 00292 | Time(s) 0.0519 | Loss 0.0818 | TrainAcc 0.9857 | ValAcc 0.8033 | ETputs(KTEPS) 255.51
+2021-12-03 15:54:52 INFO     Epoch 00293 | Time(s) 0.0519 | Loss 0.0358 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.55
+2021-12-03 15:54:52 INFO     Epoch 00294 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.55
+2021-12-03 15:54:52 INFO     Epoch 00295 | Time(s) 0.0519 | Loss 0.0026 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.53
+2021-12-03 15:54:52 INFO     Epoch 00296 | Time(s) 0.0519 | Loss 0.0130 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:52 INFO     Epoch 00297 | Time(s) 0.0519 | Loss 0.0246 | TrainAcc 0.9857 | ValAcc 0.8000 | ETputs(KTEPS) 255.47
+2021-12-03 15:54:53 INFO     Epoch 00298 | Time(s) 0.0519 | Loss 0.0008 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.44
+2021-12-03 15:54:53 INFO     Epoch 00299 | Time(s) 0.0519 | Loss 0.0060 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.48
+2021-12-03 15:54:53 INFO     Epoch 00300 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:53 INFO     Epoch 00301 | Time(s) 0.0519 | Loss 0.0436 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.49
+2021-12-03 15:54:53 INFO     Epoch 00302 | Time(s) 0.0519 | Loss 0.0016 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.53
+2021-12-03 15:54:53 INFO     Epoch 00303 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.56
+2021-12-03 15:54:53 INFO     Epoch 00304 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.57
+2021-12-03 15:54:53 INFO     Epoch 00305 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.7967 | ETputs(KTEPS) 255.59
+2021-12-03 15:54:53 INFO     Epoch 00306 | Time(s) 0.0519 | Loss 0.0023 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.63
+2021-12-03 15:54:53 INFO     Epoch 00307 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.63
+2021-12-03 15:54:53 INFO     Epoch 00308 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.67
+2021-12-03 15:54:53 INFO     Epoch 00309 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.68
+2021-12-03 15:54:54 INFO     Epoch 00310 | Time(s) 0.0519 | Loss 0.0466 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.70
+2021-12-03 15:54:54 INFO     Epoch 00311 | Time(s) 0.0519 | Loss 0.0025 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:54 INFO     Epoch 00312 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.71
+2021-12-03 15:54:54 INFO     Epoch 00313 | Time(s) 0.0519 | Loss 0.0215 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.75
+2021-12-03 15:54:54 INFO     Epoch 00314 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.78
+2021-12-03 15:54:54 INFO     Epoch 00315 | Time(s) 0.0519 | Loss 0.1307 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.76
+2021-12-03 15:54:54 INFO     Epoch 00316 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:54 INFO     Epoch 00317 | Time(s) 0.0519 | Loss 0.1683 | TrainAcc 0.9714 | ValAcc 0.8067 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:54 INFO     Epoch 00318 | Time(s) 0.0519 | Loss 0.0238 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.70
+2021-12-03 15:54:54 INFO     Epoch 00319 | Time(s) 0.0519 | Loss 0.0132 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.73
+2021-12-03 15:54:54 INFO     Epoch 00320 | Time(s) 0.0519 | Loss 0.0080 | TrainAcc 0.9929 | ValAcc 0.8033 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:54 INFO     Epoch 00321 | Time(s) 0.0519 | Loss 0.0041 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.56
+2021-12-03 15:54:54 INFO     Epoch 00322 | Time(s) 0.0519 | Loss 0.0031 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.60
+2021-12-03 15:54:55 INFO     Epoch 00323 | Time(s) 0.0519 | Loss 0.0008 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.63
+2021-12-03 15:54:55 INFO     Epoch 00324 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.67
+2021-12-03 15:54:55 INFO     Epoch 00325 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.71
+2021-12-03 15:54:55 INFO     Epoch 00326 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:55 INFO     Epoch 00327 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.72
+2021-12-03 15:54:55 INFO     Epoch 00328 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.76
+2021-12-03 15:54:55 INFO     Epoch 00329 | Time(s) 0.0519 | Loss 0.0042 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.77
+2021-12-03 15:54:55 INFO     Epoch 00330 | Time(s) 0.0519 | Loss 0.0012 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.79
+2021-12-03 15:54:55 INFO     Epoch 00331 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:55 INFO     Epoch 00332 | Time(s) 0.0520 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.26
+2021-12-03 15:54:55 INFO     Epoch 00333 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:55 INFO     Epoch 00334 | Time(s) 0.0520 | Loss 0.0022 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.25
+2021-12-03 15:54:56 INFO     Epoch 00335 | Time(s) 0.0520 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.24
+2021-12-03 15:54:56 INFO     Epoch 00336 | Time(s) 0.0520 | Loss 0.0210 | TrainAcc 0.9929 | ValAcc 0.7900 | ETputs(KTEPS) 255.26
+2021-12-03 15:54:56 INFO     Epoch 00337 | Time(s) 0.0520 | Loss 0.0006 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:56 INFO     Epoch 00338 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.7900 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:56 INFO     Epoch 00339 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.7933 | ETputs(KTEPS) 255.38
+2021-12-03 15:54:56 INFO     Epoch 00340 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.34
+2021-12-03 15:54:56 INFO     Epoch 00341 | Time(s) 0.0519 | Loss 0.0179 | TrainAcc 0.9929 | ValAcc 0.8000 | ETputs(KTEPS) 255.37
+2021-12-03 15:54:56 INFO     Epoch 00342 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.41
+2021-12-03 15:54:56 INFO     Epoch 00343 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.44
+2021-12-03 15:54:56 INFO     Epoch 00344 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8000 | ETputs(KTEPS) 255.42
+2021-12-03 15:54:56 INFO     Epoch 00345 | Time(s) 0.0519 | Loss 0.0047 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.43
+2021-12-03 15:54:56 INFO     Epoch 00346 | Time(s) 0.0519 | Loss 0.0011 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.42
+2021-12-03 15:54:56 INFO     Epoch 00347 | Time(s) 0.0519 | Loss 0.0516 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:57 INFO     Epoch 00348 | Time(s) 0.0520 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.30
+2021-12-03 15:54:57 INFO     Epoch 00349 | Time(s) 0.0520 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.31
+2021-12-03 15:54:57 INFO     Epoch 00350 | Time(s) 0.0520 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.29
+2021-12-03 15:54:57 INFO     Epoch 00351 | Time(s) 0.0519 | Loss 0.0388 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.33
+2021-12-03 15:54:57 INFO     Epoch 00352 | Time(s) 0.0519 | Loss 0.0046 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.35
+2021-12-03 15:54:57 INFO     Epoch 00353 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.38
+2021-12-03 15:54:57 INFO     Epoch 00354 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.40
+2021-12-03 15:54:57 INFO     Epoch 00355 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.43
+2021-12-03 15:54:57 INFO     Epoch 00356 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.46
+2021-12-03 15:54:57 INFO     Epoch 00357 | Time(s) 0.0519 | Loss 0.0101 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 255.48
+2021-12-03 15:54:57 INFO     Epoch 00358 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.49
+2021-12-03 15:54:57 INFO     Epoch 00359 | Time(s) 0.0519 | Loss 0.0016 | TrainAcc 1.0000 | ValAcc 0.8033 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:57 INFO     Epoch 00360 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.43
+2021-12-03 15:54:58 INFO     Epoch 00361 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.43
+2021-12-03 15:54:58 INFO     Epoch 00362 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.45
+2021-12-03 15:54:58 INFO     Epoch 00363 | Time(s) 0.0519 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.42
+2021-12-03 15:54:58 INFO     Epoch 00364 | Time(s) 0.0519 | Loss 0.0007 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.44
+2021-12-03 15:54:58 INFO     Epoch 00365 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.48
+2021-12-03 15:54:58 INFO     Epoch 00366 | Time(s) 0.0519 | Loss 0.0021 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 255.49
+2021-12-03 15:54:58 INFO     Epoch 00367 | Time(s) 0.0519 | Loss 0.0018 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 255.48
+2021-12-03 15:54:58 INFO     Epoch 00368 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:58 INFO     Epoch 00369 | Time(s) 0.0519 | Loss 0.0007 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.53
+2021-12-03 15:54:58 INFO     Epoch 00370 | Time(s) 0.0519 | Loss 0.0042 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.55
+2021-12-03 15:54:58 INFO     Epoch 00371 | Time(s) 0.0519 | Loss 0.0041 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:58 INFO     Epoch 00372 | Time(s) 0.0519 | Loss 0.0005 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.52
+2021-12-03 15:54:59 INFO     Epoch 00373 | Time(s) 0.0519 | Loss 0.0370 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.51
+2021-12-03 15:54:59 INFO     Epoch 00374 | Time(s) 0.0519 | Loss 0.0155 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.54
+2021-12-03 15:54:59 INFO     Epoch 00375 | Time(s) 0.0519 | Loss 0.0236 | TrainAcc 0.9857 | ValAcc 0.8100 | ETputs(KTEPS) 255.57
+2021-12-03 15:54:59 INFO     Epoch 00376 | Time(s) 0.0519 | Loss 0.0021 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.59
+2021-12-03 15:54:59 INFO     Epoch 00377 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.61
+2021-12-03 15:54:59 INFO     Epoch 00378 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.63
+2021-12-03 15:54:59 INFO     Epoch 00379 | Time(s) 0.0519 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.66
+2021-12-03 15:54:59 INFO     Epoch 00380 | Time(s) 0.0519 | Loss 0.0738 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:59 INFO     Epoch 00381 | Time(s) 0.0519 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.69
+2021-12-03 15:54:59 INFO     Epoch 00382 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.72
+2021-12-03 15:54:59 INFO     Epoch 00383 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.75
+2021-12-03 15:54:59 INFO     Epoch 00384 | Time(s) 0.0519 | Loss 0.0107 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.78
+2021-12-03 15:54:59 INFO     Epoch 00385 | Time(s) 0.0519 | Loss 0.0061 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.71
+2021-12-03 15:55:00 INFO     Epoch 00386 | Time(s) 0.0519 | Loss 0.0200 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 255.73
+2021-12-03 15:55:00 INFO     Epoch 00387 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.69
+2021-12-03 15:55:00 INFO     Epoch 00388 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.66
+2021-12-03 15:55:00 INFO     Epoch 00389 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.68
+2021-12-03 15:55:00 INFO     Epoch 00390 | Time(s) 0.0519 | Loss 0.0019 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.71
+2021-12-03 15:55:00 INFO     Epoch 00391 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.73
+2021-12-03 15:55:00 INFO     Epoch 00392 | Time(s) 0.0519 | Loss 0.1059 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.76
+2021-12-03 15:55:00 INFO     Epoch 00393 | Time(s) 0.0519 | Loss 0.0022 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.79
+2021-12-03 15:55:00 INFO     Epoch 00394 | Time(s) 0.0519 | Loss 0.0160 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.80
+2021-12-03 15:55:00 INFO     Epoch 00395 | Time(s) 0.0518 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.83
+2021-12-03 15:55:00 INFO     Epoch 00396 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.82
+2021-12-03 15:55:00 INFO     Epoch 00397 | Time(s) 0.0518 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.83
+2021-12-03 15:55:01 INFO     Epoch 00398 | Time(s) 0.0519 | Loss 0.0016 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.81
+2021-12-03 15:55:01 INFO     Epoch 00399 | Time(s) 0.0518 | Loss 0.0024 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.84
+2021-12-03 15:55:01 INFO     Epoch 00400 | Time(s) 0.0518 | Loss 0.0233 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 255.85
+2021-12-03 15:55:01 INFO     Epoch 00401 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.86
+2021-12-03 15:55:01 INFO     Epoch 00402 | Time(s) 0.0518 | Loss 0.0333 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.89
+2021-12-03 15:55:01 INFO     Epoch 00403 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.90
+2021-12-03 15:55:01 INFO     Epoch 00404 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.91
+2021-12-03 15:55:01 INFO     Epoch 00405 | Time(s) 0.0518 | Loss 0.0004 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.92
+2021-12-03 15:55:01 INFO     Epoch 00406 | Time(s) 0.0518 | Loss 0.0009 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.93
+2021-12-03 15:55:01 INFO     Epoch 00407 | Time(s) 0.0518 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.96
+2021-12-03 15:55:01 INFO     Epoch 00408 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.98
+2021-12-03 15:55:01 INFO     Epoch 00409 | Time(s) 0.0518 | Loss 0.0062 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.90
+2021-12-03 15:55:01 INFO     Epoch 00410 | Time(s) 0.0518 | Loss 0.0003 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.89
+2021-12-03 15:55:02 INFO     Epoch 00411 | Time(s) 0.0518 | Loss 0.0048 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.87
+2021-12-03 15:55:02 INFO     Epoch 00412 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.85
+2021-12-03 15:55:02 INFO     Epoch 00413 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.82
+2021-12-03 15:55:02 INFO     Epoch 00414 | Time(s) 0.0518 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.84
+2021-12-03 15:55:02 INFO     Epoch 00415 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.87
+2021-12-03 15:55:02 INFO     Epoch 00416 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.90
+2021-12-03 15:55:02 INFO     Epoch 00417 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8133 | ETputs(KTEPS) 255.93
+2021-12-03 15:55:02 INFO     Epoch 00418 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.94
+2021-12-03 15:55:02 INFO     Epoch 00419 | Time(s) 0.0518 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.96
+2021-12-03 15:55:02 INFO     Epoch 00420 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.99
+2021-12-03 15:55:02 INFO     Epoch 00421 | Time(s) 0.0518 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 256.01
+2021-12-03 15:55:02 INFO     Epoch 00422 | Time(s) 0.0518 | Loss 0.0199 | TrainAcc 0.9929 | ValAcc 0.8167 | ETputs(KTEPS) 256.01
+2021-12-03 15:55:02 INFO     Epoch 00423 | Time(s) 0.0518 | Loss 0.0493 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 256.00
+2021-12-03 15:55:03 INFO     Epoch 00424 | Time(s) 0.0518 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 256.03
+2021-12-03 15:55:03 INFO     Epoch 00425 | Time(s) 0.0518 | Loss 0.0108 | TrainAcc 0.9929 | ValAcc 0.8200 | ETputs(KTEPS) 256.04
+2021-12-03 15:55:03 INFO     Epoch 00426 | Time(s) 0.0518 | Loss 0.0001 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 256.07
+2021-12-03 15:55:03 INFO     Epoch 00427 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.57
+2021-12-03 15:55:03 INFO     Epoch 00428 | Time(s) 0.0519 | Loss 0.0516 | TrainAcc 0.9857 | ValAcc 0.8167 | ETputs(KTEPS) 255.59
+2021-12-03 15:55:03 INFO     Epoch 00429 | Time(s) 0.0519 | Loss 0.0024 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.57
+2021-12-03 15:55:03 INFO     Epoch 00430 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.59
+2021-12-03 15:55:03 INFO     Epoch 00431 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.60
+2021-12-03 15:55:03 INFO     Epoch 00432 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8200 | ETputs(KTEPS) 255.63
+2021-12-03 15:55:03 INFO     Epoch 00433 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8167 | ETputs(KTEPS) 255.65
+2021-12-03 15:55:03 INFO     Epoch 00434 | Time(s) 0.0519 | Loss 0.0002 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.66
+2021-12-03 15:55:03 INFO     Epoch 00435 | Time(s) 0.0519 | Loss 0.0152 | TrainAcc 0.9929 | ValAcc 0.8100 | ETputs(KTEPS) 255.66
+2021-12-03 15:55:04 INFO     Epoch 00436 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.61
+2021-12-03 15:55:04 INFO     Epoch 00437 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.58
+2021-12-03 15:55:04 INFO     Epoch 00438 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.59
+2021-12-03 15:55:04 INFO     Epoch 00439 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.56
+2021-12-03 15:55:04 INFO     Epoch 00440 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.54
+2021-12-03 15:55:04 INFO     Epoch 00441 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.56
+2021-12-03 15:55:04 INFO     Epoch 00442 | Time(s) 0.0519 | Loss 0.0303 | TrainAcc 0.9929 | ValAcc 0.8067 | ETputs(KTEPS) 255.58
+2021-12-03 15:55:04 INFO     Epoch 00443 | Time(s) 0.0519 | Loss 0.0075 | TrainAcc 1.0000 | ValAcc 0.8067 | ETputs(KTEPS) 255.49
+2021-12-03 15:55:04 INFO     Epoch 00444 | Time(s) 0.0519 | Loss 0.0006 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.49
+2021-12-03 15:55:04 INFO     Epoch 00445 | Time(s) 0.0519 | Loss 0.0296 | TrainAcc 0.9929 | ValAcc 0.8133 | ETputs(KTEPS) 255.50
+2021-12-03 15:55:04 INFO     Epoch 00446 | Time(s) 0.0519 | Loss 0.0000 | TrainAcc 1.0000 | ValAcc 0.8100 | ETputs(KTEPS) 255.52
+2021-12-03 15:55:04 INFO     
+
+2021-12-03 15:55:04 INFO     Best validation acc: 0.83
+Best test acc: 0.798 
+Final test acc: 0.804
+2021-12-03 15:55:04 INFO     Best model name: 146_vacc_0.83_tacc_0.798.pt

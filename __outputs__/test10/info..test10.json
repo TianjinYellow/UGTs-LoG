@@ -1,0 +1,17 @@
+{
+  "last_val": 0.76,
+  "epoch": 399,
+  "best_val": 0.798,
+  "best_epoch": 74,
+  "loss_train": 0.013411026341574532,
+  "acc_train": 0.9642857142857143,
+  "total_time": "0:00:08",
+  "total_seconds": 8.58099913597107,
+  "prefix": "",
+  "params_info": {
+    "params_after_pruned": 258419,
+    "params_before_pruned": 369166,
+    "total_params": 738332,
+    "sparsity": 0.29999241533619025
+  }
+}
