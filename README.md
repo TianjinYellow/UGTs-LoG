@@ -1,6 +1,6 @@
 # UGTs Official Pytorch implementation
 
-<img src="https://github.com/TienjinHuang/UGTs-LoG/blob/main/all_sparsity.png" width="600" height="300">
+<img src="https://github.com/TienjinHuang/UGTs-LoG/blob/main/all_sparsity.png" width="800" height="300">
 
 **You Can Have Better Graph Neural Networks by Not Training Weights at All: Finding Untrained GNNs Tickets**<br>
 Tianjin Huang, Tianlong Chen, Meng Fang, Vlado Menkovski, Jiaxu Zhao, Lu Yin, Yulong Pei, Decebal Constantin Mocanu, Zhangyang Wang, Mykola Pechenizkiy, Shiwei Liu<br>
