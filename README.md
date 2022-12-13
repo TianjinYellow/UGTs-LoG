@@ -14,13 +14,13 @@ The implementation is heavily based on Daiki Chijiwa' implemenation for experime
 
 ## Requirements
 
-pip install rdkit-pypi cython
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
-pip install ogb==1.3.1 tqdm
-conda install pyg -c pyg -c conda-forge
-pip install pyyaml==5.3.1 pandas==1.2.0
-conda install -c dglteam dgl-cuda10.2
-pip install littleballoffur
+pip install rdkit-pypi cython<br>
+conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch<br>
+pip install ogb==1.3.1 tqdm<br>
+conda install pyg -c pyg -c conda-forge<br>
+pip install pyyaml==5.3.1 pandas==1.2.0<br>
+conda install -c dglteam dgl-cuda10.2<br>
+pip install littleballoffur<br>
 
 ## Usage
 
@@ -28,11 +28,11 @@ pip install littleballoffur
 ## Citation
 If you use this library in a research paper, please cite this repository.
 ```
-@inproceedings{liu2021we,
-  title={Do we actually need dense over-parameterization? in-time over-parameterization in sparse training},
-  author={Liu, Shiwei and Yin, Lu and Mocanu, Decebal Constantin and Pechenizkiy, Mykola},
-  booktitle={International Conference on Machine Learning},
-  pages={6989--7000},
-  year={2021},
-  organization={PMLR}
+@inproceedings{
+huang2022you,
+title={You Can Have Better Graph Neural Networks by Not Training Weights at All: Finding Untrained {GNN}s Tickets},
+author={Tianjin Huang and Tianlong Chen and Meng Fang and Vlado Menkovski and Jiaxu Zhao and Lu Yin and Yulong Pei and Decebal Constantin Mocanu and Zhangyang Wang and Mykola Pechenizkiy and Shiwei Liu},
+booktitle={The First Learning on Graphs Conference},
+year={2022},
+url={https://openreview.net/forum?id=dF6aEW3_62O}
 }
