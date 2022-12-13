@@ -24,6 +24,19 @@ pip install littleballoffur<br>
 
 ## Usage
 
+### on Cora with GAT
+
+python main.py --command train  --lr 0.01 --num_layers 2 --dim_hidden 256 --dataset Cora --heads 1 --rerand_freq 0 --train_mode score_only --linear_sparsity 0.95 --exp_name test10  --epochs 400  --type_model GAT  --weight_l1 0  --repeat_times 1 --sparse_decay --weight_decay 0.0 --random_seed 100
+
+### on Cora with GCN
+
+python main.py --command train  --lr 0.01 --num_layers 2 --dim_hidden 256 --dataset Cora --heads 1  --train_mode score_only --linear_sparsity 0.9  --exp_name test10  --epochs 400  --type_model GCN  --weight_l1 0  --repeat_times 1 --sparse_decay --weight_decay 0.0 
+
+### on Cora with GCN 32 layers
+
+python main.py --command train  --lr 0.005 --num_layers 32 --dim_hidden 448 --dataset Cora --heads 1  --train_mode score_only --linear_sparsity 0.04  --exp_name test10  --epochs 400  --type_model GCN  --weight_l1 0  --repeat_times 1 --sparse_decay --weight_decay 0.0 --random_seed 100
+
+
 
 ## Citation
 If you use this library in a research paper, please cite this repository.
