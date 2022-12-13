@@ -1,6 +1,6 @@
 # UGTs Official Pytorch implementation
 
-<img src="https://github.com/TienjinHuang/UGTs-LoG/blob/main/all_sparsity.png" width="500" height="300">
+<img src="https://github.com/TienjinHuang/UGTs-LoG/blob/main/all_sparsity.png" width="800" height="300">
 
 
 This is the official code for UGTs.
