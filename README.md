@@ -15,7 +15,7 @@ The implementation is heavily based on Daiki Chijiwa' implemenation for experime
 ## Requirements
 
 pip install rdkit-pypi cython<br>
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch<br>
+conda install pytorch torchvision torchaudio pytorch-cuda=11.6 -c pytorch -c nvidia<br>
 pip install ogb==1.3.1 tqdm<br>
 conda install pyg -c pyg -c conda-forge<br>
 pip install pyyaml==5.3.1 pandas==1.2.0<br>
