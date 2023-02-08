@@ -1,0 +1,724 @@
+
+########################################################
+#   General settings
+########################################################
+
+# -- Definitions of datasets --
+
+cifar10: 
+    class: 'CIFAR10'
+    data_type: 'image'
+    num_channels: 3
+    image_size: 32
+    num_classes: 10
+    train_val_split: 0
+cifar100: 
+    class: 'CIFAR100'
+    data_type: 'image'
+    num_channels: 3
+    image_size: 32
+    num_classes: 100
+    train_val_split: 0
+imagenet:
+    class: 'ImageNet'
+    data_type: 'image'
+    num_channels: 3
+    image_size: 224
+    num_classes: 1000
+    train_val_split: 0.0
+
+# -- Definitions of networks --
+
+conv6:
+    class: 'Conv6'
+    factor: 1.0
+conv6x0.25:
+    class: 'Conv6'
+    factor: 0.25
+conv6x0.5:
+    class: 'Conv6'
+    factor: 0.5
+conv6x1.0:
+    class: 'Conv6'
+    factor: 1.0
+conv6x2.0:
+    class: 'Conv6'
+    factor: 2.0
+
+resnet18: &__resnet18__
+    class: 'ResNet'
+    block_class: 'BasicBlock'
+    num_blocks: [2, 2, 2, 2]
+    factor: 1.0
+resnet18x0.25:
+    <<: *__resnet18__
+    factor: 0.25
+resnet18x0.5:
+    <<: *__resnet18__
+    factor: 0.5
+resnet18x1.0:
+    <<: *__resnet18__
+    factor: 1.0
+resnet18x2.0:
+    <<: *__resnet18__
+    factor: 2.0
+
+resnet34: &__resnet34__
+    class: 'ResNet'
+    block_class: 'BasicBlock'
+    num_blocks: [3, 4, 6, 3]
+    factor: 1.0
+resnet34x0.25:
+    <<: *__resnet34__
+    factor: 0.25
+resnet34x0.5:
+    <<: *__resnet34__
+    factor: 0.5
+resnet34x1.0:
+    <<: *__resnet34__
+    factor: 1.0
+resnet34x2.0:
+    <<: *__resnet34__
+    factor: 2.0
+
+resnet50:
+    class: 'ResNet'
+    block_class: 'Bottleneck'
+    num_blocks: [3, 4, 6, 3]
+    factor: 1.0
+
+resnet101:
+    class: 'ResNet'
+    block_class: 'Bottleneck'
+    num_blocks: [3, 4, 23, 3]
+    factor: 1.0
+
+
+# -- all options --
+
+__default__: &__default__
+
+    # General Setting
+    num_workers: 4
+    use_cuda: True
+    output_dir: '__outputs__'
+    dataset_dir: '__data__'
+    sync_dir: '__sync__'
+    checkpoint_epochs: []
+    seed: null
+    seed_by_time: false
+    dataset_download: true
+    num_gpus: 1
+    debug_max_iters: null
+    load_checkpoint_path: null
+
+    dataset.config_name: null
+    model.config_name: null
+    save_best_model: true
+    print_train_loss: false
+
+    # Hyperparameters for Training
+    epoch: null
+    optimizer: "SGD"
+    lr: null
+    weight_decay: null
+    lr_scheduler: null
+    warmup_epochs: 0
+    finetuning_epochs: 0
+    finetuning_lr: null
+    sgd_momentum: 0.9
+    lr_milestones: null
+    multisteplr_gamma: 0.1
+    padding_before_crop: False
+
+    learning_framework: "SupervisedLearning"
+    train_mode: 'normal'
+
+    batch_size: 128
+    batch_size_eval: 512
+    max_train_dataset_size: null
+    bn_track_running_stats: True
+    bn_affine: True
+    bn_momentum: 0.1
+
+    # Hyperparameters for edge-popup
+    conv_sparsity: 0.0
+    linear_sparsity: null
+    init_mode: 'kaiming_uniform'
+    init_mode_linear: null
+    init_mode_mask: 'kaiming_uniform'
+    init_scale: 1.0
+    init_scale_score: 1.0
+
+    # Hyperparameters for IteRand
+    rerand_mode: null
+    rerand_freq: 1
+    rerand_freq_unit: "iteration"
+    rerand_lambda: null
+    rerand_mu: null
+    rerand_rate: 1.0
+
+    # Hyperparameter Search Setting
+    parallel_grid: null
+
+    train_augmentation: True
+
+
+########################################################
+#   Default settings for training on CIFAR-10 and ImageNet 
+########################################################
+
+cifar10_sgd: &cifar10_sgd
+    <<: *__default__
+    dataset.config_name: 'cifar10'
+    padding_before_crop: True
+
+    epoch: 100
+    batch_size: 128
+    optimizer: "SGD"
+    lr_scheduler: "CustomCosineLR"
+    warmup_epochs: 0
+
+    # Override these options
+    lr: 0.1
+    model.config_name: null
+    weight_decay: null # 0.0001 for convs, 0.0005 for resnets
+
+cifar100_sgd: &cifar100_sgd
+    <<: *__default__
+    dataset.config_name: 'cifar100'
+    padding_before_crop: True
+
+    epoch: 100
+    batch_size: 128
+    optimizer: "SGD"
+    lr_scheduler: "CustomCosineLR"
+    warmup_epochs: 0
+
+    # Override these options
+    lr: 0.1
+    model.config_name: null
+    weight_decay: null # 0.0001 for convs, 0.0005 for resnets
+
+imagenet_sgd: &imagenet_sgd
+    <<: *__default__
+    dataset.config_name: 'imagenet'
+    model.config_name: null
+    num_workers: 8
+
+    epoch: 105
+    batch_size: 128
+    sgd_momentum: 0.9
+    weight_decay: 0.0001
+    optimizer: "SGD"
+
+    lr: 0.1
+    lr_scheduler: "CustomCosineLR"
+    warmup_epochs: 5
+    finetuning_epochs: 5
+    finetuning_lr: 0.00001
+
+
+########################################################
+#   Training Examples
+########################################################
+
+# standard training of ResNet18 on CIFAR-10
+cifar10_resnet18_ku_sgd:
+    <<: *cifar10_sgd
+    init_mode: 'kaiming_uniform'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+cifar100_resnet18_ku_sgd:
+    <<: *cifar100_sgd
+    init_mode: 'kaiming_uniform'
+    model.config_name: "resnet18"
+    weight_decay: 0.0001
+    seed: 1
+# edge-popup (SC dist, p=0.6) for ResNet18 on CIFAR-10
+cifar10_resnet18_sc_edgepopup:
+    <<: *cifar10_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "score_only"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+
+cifar100_resnet18_sc_edgepopup:
+    <<: *cifar100_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "score_only"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+
+cifar10_resnet18_sc_all:
+    <<: *cifar10_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "all"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+
+cifar10_resnet34_sc_all:
+    <<: *cifar10_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet34"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "all"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+cifar10_resnet50_sc_all:
+    <<: *cifar10_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet50"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "all"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+
+cifar100_resnet18_sc_all:
+    <<: *cifar100_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "all"
+    conv_sparsity: 0.1
+    bn_affine: False
+
+    rerand_mode: null
+
+# IteRand (SC dist, p=0.6, K_per=300, r=0.1) for ResNet18 on CIFAR-10
+cifar10_resnet18_sc_iterand:
+    <<: *cifar10_sgd
+    init_mode: 'signed_constant'
+    model.config_name: "resnet18"
+    weight_decay: 0.0005
+    seed: 1
+
+    train_mode: "score_only"
+    conv_sparsity: 0.6
+    bn_affine: False
+
+    rerand_mode: "bernoulli"
+    rerand_freq: 300
+    rerand_lambda: 0.1
+
+
+########################################################
+#   Paper settings for CIFAR-10 experiments
+########################################################
+
+# # --------------------------
+# # Figure 1 experiments
+# # --------------------------
+
+# figure1_conv6_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["conv6x1.0"]
+#         conv_sparsity: [0.5]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0, 0.1, 0.01, 1.0]
+#         lr: [0.3]
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+# figure1_resnet18_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet18x1.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0, 0.1, 0.01, 1.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure1_resnet34_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet34x1.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0, 0.1, 0.01, 1.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+
+# # --------------------------
+# # Figure 2 experiments
+# # --------------------------
+
+# # -- Conv6 --
+
+# figure2_conv6_ku_sgd:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     parallel_grid:
+#         model.config_name: ["conv6x0.25", "conv6x0.5", "conv6x1.0", "conv6x2.0"]
+#         lr: [0.01]   # This lr is only for sgd (not for edge-popup)
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+# figure2_conv6_ku_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["conv6x0.25", "conv6x0.5", "conv6x1.0", "conv6x2.0"]
+#         conv_sparsity: [0.5]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         lr: [0.3]
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+# figure2_conv6_sc_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["conv6x0.25", "conv6x0.5", "conv6x1.0", "conv6x2.0"]
+#         conv_sparsity: [0.5]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         lr: [0.3]
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+# figure2_conv6_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["conv6x0.25", "conv6x0.5", "conv6x1.0", "conv6x2.0"]
+#         conv_sparsity: [0.5]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         lr: [0.3]
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+# figure2_conv6_sc_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["conv6x0.25", "conv6x0.5", "conv6x1.0", "conv6x2.0"]
+#         conv_sparsity: [0.5]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         lr: [0.3]
+#         weight_decay: [0.0001]
+#         seed: [1,2,3]
+
+# # -- ResNet18 --
+
+# figure2_resnet18_ku_sgd:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     parallel_grid:
+#         model.config_name: ["resnet18x0.25", "resnet18x0.5", "resnet18x1.0", "resnet18x2.0"]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet18_ku_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet18x0.25", "resnet18x0.5", "resnet18x1.0", "resnet18x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet18_sc_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet18x0.25", "resnet18x0.5", "resnet18x1.0", "resnet18x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet18_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet18x0.25", "resnet18x0.5", "resnet18x1.0", "resnet18x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet18_sc_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet18x0.25", "resnet18x0.5", "resnet18x1.0", "resnet18x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+
+# # -- ResNet34 --
+
+# figure2_resnet34_ku_sgd:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     parallel_grid:
+#         model.config_name: ["resnet34x0.25", "resnet34x0.5", "resnet34x1.0", "resnet34x2.0"]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet34_ku_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet34x0.25", "resnet34x0.5", "resnet34x1.0", "resnet34x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet34_sc_edgepopup:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet34x0.25", "resnet34x0.5", "resnet34x1.0", "resnet34x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.0]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet34_ku_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'kaiming_uniform'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet34x0.25", "resnet34x0.5", "resnet34x1.0", "resnet34x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+# figure2_resnet34_sc_iterand:
+#     <<: *cifar10_sgd
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     bn_affine: False
+#     parallel_grid:
+#         model.config_name: ["resnet34x0.25", "resnet34x0.5", "resnet34x1.0", "resnet34x2.0"]
+#         conv_sparsity: [0.6]
+#         rerand_freq: [300]
+#         rerand_lambda: [0.1]
+#         weight_decay: [0.0005]
+#         seed: [1,2,3]
+
+
+# ########################################################
+# #   Paper settings for ImageNet experiments
+# ########################################################
+
+# # --------------------------
+# # Figure 3 experiments
+# # --------------------------
+
+# figure3_resnet18_ku_sgd:
+#     <<: *imagenet_sgd
+#     num_gpus: 1
+#     model.config_name: "resnet18"
+
+#     parallel_grid:
+#         seed: [1]
+# figure3_resnet34_ku_sgd:
+#     <<: *imagenet_sgd
+#     num_gpus: 1
+#     model.config_name: "resnet34"
+
+#     parallel_grid:
+#         seed: [1]
+# figure3_resnet34_sc_edgepopup:
+#     <<: *imagenet_sgd
+#     num_gpus: 1
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     model.config_name: "resnet34"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         seed: [1]
+# figure3_resnet50_sc_edgepopup:
+#     <<: *imagenet_sgd
+#     num_gpus: 2
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     model.config_name: "resnet50"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         seed: [1]
+# figure3_resnet101_sc_edgepopup:
+#     <<: *imagenet_sgd
+#     num_gpus: 2
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     model.config_name: "resnet101"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         seed: [1]
+# figure3_resnet34_sc_iterand:
+#     <<: *imagenet_sgd
+#     num_gpus: 1
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     model.config_name: "resnet34"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         rerand_freq: [1000]
+#         rerand_lambda: [0.1]
+#         seed: [1]
+# figure3_resnet50_sc_iterand:
+#     <<: *imagenet_sgd
+#     num_gpus: 2
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     model.config_name: "resnet50"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         rerand_freq: [1000]
+#         rerand_lambda: [0.1]
+#         seed: [1]
+# figure3_resnet101_sc_iterand:
+#     <<: *imagenet_sgd
+#     num_gpus: 2
+
+#     init_mode: 'signed_constant'
+#     train_mode: "score_only"
+#     bn_affine: False
+
+#     rerand_mode: "bernoulli"
+#     rerand_freq: null
+
+#     model.config_name: "resnet101"
+
+#     parallel_grid:
+#         conv_sparsity: [0.7]
+#         rerand_freq: [1000]
+#         rerand_lambda: [0.1]
+#         seed: [1]
+
